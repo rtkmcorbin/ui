@@ -121,7 +121,7 @@ export const StyledInput = styled.input<StyledInputProps>`
     
     width: 100%;
     -webkit-appearance: none;
-    font-family: inherit;
+    font-family: 'Lato', sans-serif;
     
     background: ${theme.inputBackground};
     color: ${theme.inputColor};
