@@ -4,6 +4,7 @@ import CheckCircle from './CheckCircle';
 import Exclamation from './Exclamation';
 import ExclamationCircle from './ExclamationCircle';
 import ExclamationTriangle from './ExclamationTriangle';
+import InfoCircle from './InfoCircle';
 import Loading from './Loading';
 import Minus from './Minus';
 import Pencil from './Pencil';
@@ -18,6 +19,7 @@ export const Icon = {
   Exclamation,
   ExclamationCircle,
   ExclamationTriangle,
+  InfoCircle,
   Loading,
   Minus,
   Pencil,

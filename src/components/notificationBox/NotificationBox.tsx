@@ -6,27 +6,27 @@ import {
   Container,
   NotificationTextContainer,
   NotificationText,
-} from './StyledValidationNotification';
+} from './StyledNotificationBox';
 
 import { NotificationIcon } from './NotificationIcon';
 import { CloseIcon } from './CloseIcon';
 
-export interface ValidationNotificationProps {
+export interface NotificationBoxProps {
   /** className of the notification component */
   className?: string;
 
   /** Callback to be called when close is clicked */
   onClose?: () => void;
 
-  /** Determines the color of the validation notification */
-  validationStatus: 'success' | 'error' | 'warning';
+  /** Determines the intent of the notification for the user */
+  notificationType: 'default' | 'success' | 'error' | 'warning' | 'info';
 }
 
-export const ValidationNotification: React.FunctionComponent<ValidationNotificationProps> = ({
+export const NotificationBox: React.FunctionComponent<NotificationBoxProps> = ({
   children,
   className,
   onClose,
-  validationStatus,
+  notificationType,
 }) => {
   const theme = useTheme();
 
@@ -34,9 +34,9 @@ export const ValidationNotification: React.FunctionComponent<ValidationNotificat
     <Container
       className={`${className} rtk-validation-notification`}
       theme={theme}
-      validationStatus={validationStatus}
+      notificationType={notificationType}
     >
-      <NotificationIcon validationStatus={validationStatus} />
+      <NotificationIcon notificationType={notificationType} />
       <NotificationTextContainer>
         <NotificationText>{children}</NotificationText>
       </NotificationTextContainer>
@@ -45,4 +45,4 @@ export const ValidationNotification: React.FunctionComponent<ValidationNotificat
   );
 };
 
-ValidationNotification.displayName = 'ValidationNotification';
+NotificationBox.displayName = 'NotificationBox';

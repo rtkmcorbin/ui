@@ -2,7 +2,7 @@ import { colors } from './colors';
 
 import { Colors, GlobalTheme } from './types';
 
-import { rgba, darken, lighten } from 'polished';
+import { rgba, darken } from 'polished';
 
 export const getDefaultTheme = (themeColors: Colors = colors): GlobalTheme => ({
   // ---- Animation ---- //
@@ -170,6 +170,18 @@ export const getDefaultTheme = (themeColors: Colors = colors): GlobalTheme => ({
   modalMinHeight: '200px',
   modalMinWidth: '520px',
 
+  // ---- NotificationBox ---- //
+  notificationBoxMinHeight: '46px',
+  notificationBoxMaxWidth: '520px',
+  notificationBoxErrorBackground: `${rgba(themeColors.red, 0.25)}`,
+  notificationBoxSuccessBackground: `${rgba(themeColors.green, 0.25)}`,
+  notificationBoxWarningBackground: `${rgba(themeColors.yellow, 0.25)}`,
+  notificationBoxInfoBackground: `${rgba(themeColors.blue, 0.25)}`,
+  notificationBoxDefaultBackground: `${rgba(themeColors.gray, 0.25)}`,
+  notificationBoxBorderRadius: '4px',
+  notificationBoxBoxShadow: `0px 0px 4px ${rgba(themeColors.black, 0.2)}`,
+  notificationBoxPadding: '8px 16px',
+
   // ---- Panel ---- //
   panelBackground: themeColors.primaryBackground,
   panelBorder: 'none',
@@ -269,19 +281,6 @@ export const getDefaultTheme = (themeColors: Colors = colors): GlobalTheme => ({
   typographyLabelLineHeight: '1.5',
   typographyLabelLetterSpacing: '0',
   typographyLabelTextTransform: 'uppercase',
-
-  // ---- ValidationNotification ---- //
-  validationNotificationMinHeight: '46px',
-  validationNotificationMaxWidth: '520px',
-  validationNotificationErrorBackground: `${rgba(themeColors.red, 0.25)}`,
-  validationNotificationSuccessBackground: `${rgba(themeColors.green, 0.25)}`,
-  validationNotificationWarningBackground: `${rgba(themeColors.yellow, 0.25)}`,
-  validationNotificationBorderRadius: '4px',
-  validationNotificationBoxShadow: `0px 0px 4px ${rgba(
-    themeColors.black,
-    0.2
-  )}`,
-  validationNotificationPadding: '8px 16px',
 
   colors: {
     ...themeColors,
