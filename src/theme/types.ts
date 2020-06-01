@@ -290,5 +290,15 @@ export interface GlobalTheme {
   typographyLabelLetterSpacing: string;
   typographyLabelTextTransform: string;
 
+  // ---- ValidationNotification ---- //
+  validationNotificationMinHeight: string;
+  validationNotificationMaxWidth: string;
+  validationNotificationErrorBackground: string;
+  validationNotificationSuccessBackground: string;
+  validationNotificationWarningBackground: string;
+  validationNotificationBorderRadius: string;
+  validationNotificationBoxShadow: string;
+  validationNotificationPadding: string;
+
   colors: Colors;
 }

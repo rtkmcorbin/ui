@@ -2,7 +2,7 @@ import { colors } from './colors';
 
 import { Colors, GlobalTheme } from './types';
 
-import { rgba, darken } from 'polished';
+import { rgba, darken, lighten } from 'polished';
 
 export const getDefaultTheme = (themeColors: Colors = colors): GlobalTheme => ({
   // ---- Animation ---- //
@@ -93,6 +93,12 @@ export const getDefaultTheme = (themeColors: Colors = colors): GlobalTheme => ({
   collapseHeaderPadding: '0px 15px',
   collapseHeaderHeight: '32px',
   collapseIconSize: '10px',
+
+  // ---- Divider ---- //
+  dividerBorder: themeColors.border,
+  dividerBackground: themeColors.border,
+  dividerTextPrimaryBackground: themeColors.primaryBackground,
+  dividerTextColor: themeColors.body,
 
   // ---- Layout ---- //
   layoutHeaderHeight: '44px',
@@ -264,11 +270,18 @@ export const getDefaultTheme = (themeColors: Colors = colors): GlobalTheme => ({
   typographyLabelLetterSpacing: '0',
   typographyLabelTextTransform: 'uppercase',
 
-  // ---- Divider ---- //
-  dividerBorder: themeColors.border,
-  dividerBackground: themeColors.border,
-  dividerTextPrimaryBackground: themeColors.primaryBackground,
-  dividerTextColor: themeColors.body,
+  // ---- ValidationNotification ---- //
+  validationNotificationMinHeight: '46px',
+  validationNotificationMaxWidth: '520px',
+  validationNotificationErrorBackground: `${rgba(themeColors.red, 0.25)}`,
+  validationNotificationSuccessBackground: `${rgba(themeColors.green, 0.25)}`,
+  validationNotificationWarningBackground: `${rgba(themeColors.yellow, 0.25)}`,
+  validationNotificationBorderRadius: '4px',
+  validationNotificationBoxShadow: `0px 0px 4px ${rgba(
+    themeColors.black,
+    0.2
+  )}`,
+  validationNotificationPadding: '8px 16px',
 
   colors: {
     ...themeColors,
