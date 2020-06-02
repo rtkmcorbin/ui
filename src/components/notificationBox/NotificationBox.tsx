@@ -12,6 +12,9 @@ import { NotificationIcon } from './NotificationIcon';
 import { CloseIcon } from './CloseIcon';
 
 export interface NotificationBoxProps {
+  /** if true, the close icon will appear on the notification for interaction */
+  allowClose?: boolean;
+
   /** className of the notification component */
   className?: string;
 
@@ -23,6 +26,7 @@ export interface NotificationBoxProps {
 }
 
 export const NotificationBox: React.FunctionComponent<NotificationBoxProps> = ({
+  allowClose,
   children,
   className,
   onClose,
@@ -40,9 +44,13 @@ export const NotificationBox: React.FunctionComponent<NotificationBoxProps> = ({
       <NotificationTextContainer>
         <NotificationText>{children}</NotificationText>
       </NotificationTextContainer>
-      <CloseIcon onClose={onClose} />
+      {allowClose && <CloseIcon onClose={onClose} />}
     </Container>
   );
+};
+
+NotificationBox.defaultProps = {
+  allowClose: true,
 };
 
 NotificationBox.displayName = 'NotificationBox';
