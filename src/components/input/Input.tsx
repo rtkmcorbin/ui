@@ -8,18 +8,14 @@ import {
   Description,
   Container,
   Label,
-  Status,
   StyledInput,
-  FeedbackMessage,
 } from './StyledInput';
 
 import { Suffix } from './Suffix';
-
-import { AnimatePresence, motion } from 'framer-motion';
+import { FormItemContext } from '../formItem/FormItemContext';
 
 export type BorderType = 'full' | 'bottom' | 'none';
 export type InputSize = 'small' | 'default' | 'large';
-export type ValidationStatus = 'success' | 'error' | 'warning' | 'loading';
 
 export interface InputProps {
   /** Type of border for the input */
@@ -90,15 +86,6 @@ export interface InputProps {
 
   /** value of the input */
   value?: string;
-
-  /** Validation status to provide feedback to the user */
-  validationStatus?: ValidationStatus;
-
-  /** Message to show along with the `validationStatus` */
-  validationMessage?: string | null;
-
-  /** Custom component used to display the validation message */
-  validationComponent?: (error: string) => React.ReactNode;
 }
 
 export const Input: React.FunctionComponent<InputProps> = React.forwardRef<
@@ -114,7 +101,6 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef<
     id,
     label,
     name,
-    hasFeedbackMessage,
     hasFeedbackIcon,
     onBlur,
     onChange,
@@ -128,12 +114,11 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef<
     readOnly,
     required,
     value,
-    validationMessage,
-    validationComponent,
-    validationStatus,
   } = props;
 
   const theme = useTheme();
+
+  const { status } = React.useContext(FormItemContext);
 
   return (
     <Container className={`${className} rtk-input`}>
@@ -150,7 +135,7 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef<
           </Prefix>
         )}
         <Suffix
-          validationStatus={validationStatus}
+          validationStatus={status}
           theme={theme}
           inputSuffix={inputSuffix}
           size={size}
@@ -179,32 +164,8 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef<
         readOnly={readOnly}
         theme={theme}
         value={value}
-        validationStatus={validationStatus}
+        validationStatus={status}
       />
-      {hasFeedbackMessage && (
-        <FeedbackMessage theme={theme}>
-          <AnimatePresence>
-            {validationMessage && validationStatus && (
-              <motion.div
-                key="validate-message"
-                style={{ position: 'relative' }}
-                initial={{ opacity: 0, top: -5 }}
-                animate={{ opacity: 1, top: 0 }}
-                exit={{ opacity: 0, top: -5 }}
-                transition={{ duration: theme.animationTimeVeryFast }}
-              >
-                {validationComponent ? (
-                  validationComponent(validationMessage)
-                ) : (
-                  <Status validationStatus={validationStatus} theme={theme}>
-                    {validationMessage}
-                  </Status>
-                )}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </FeedbackMessage>
-      )}
     </Container>
   );
 });
@@ -231,5 +192,4 @@ Input.defaultProps = {
   readOnly: false,
   required: false,
   value: undefined,
-  validationStatus: undefined,
 };
