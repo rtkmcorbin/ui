@@ -14,6 +14,8 @@ const Checkbox = styled.input``;
 const FlexContainer = styled.div`
   display: flex;
   align-items: center;
+
+  margin-bottom: 8px;
 `;
 
 export default {

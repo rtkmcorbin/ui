@@ -8,19 +8,23 @@ import { useTheme } from '../../hooks/useTheme';
 import { FormItemContext } from './FormItemContext';
 import { Typography } from '../typography/Typography';
 
+export type Status = 'error' | 'success' | 'warning' | 'loading';
+
 export interface FormItemProps {
   /** className of the FormItem component */
   className?: string;
 
   /** Determines the style for the message and child component */
-  status?: 'error' | 'success' | 'warning' | 'loading';
+  status?: Status;
 
   /** Message to show when status is defined */
   message?: string;
 }
 
 const Container = styled.div``;
-const StatusContainer = styled.div``;
+const StatusContainer = styled.div`
+  height: 16px;
+`;
 
 const StatusMessage = styled(Typography.Description)`
   ${({ theme, otherProps }) =>
@@ -32,7 +36,7 @@ const StatusMessage = styled(Typography.Description)`
   ${({ theme, otherProps }) =>
     otherProps.status === 'warning' &&
     css`
-      color: ${theme.colors.yellow};
+      color: ${theme.colors.orange};
     `}
 
   ${({ theme, otherProps }) =>

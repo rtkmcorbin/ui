@@ -2,16 +2,8 @@ import * as React from 'react';
 
 import { useTheme } from '../../hooks';
 
-import {
-  Prefix,
-  AffixContainer,
-  Description,
-  Container,
-  Label,
-  StyledInput,
-} from './StyledInput';
+import { Description, Container, Label, StyledInput } from './StyledInput';
 
-import { Suffix } from './Suffix';
 import { FormItemContext } from '../formItem/FormItemContext';
 
 export type BorderType = 'full' | 'bottom' | 'none';
@@ -38,18 +30,6 @@ export interface InputProps {
 
   /** id of the input to be used with Formik */
   id?: string;
-
-  /** Set to `true` to use validation message */
-  hasFeedbackMessage?: boolean;
-
-  /** Set to `true` to use validation icon */
-  hasFeedbackIcon?: boolean;
-
-  /** Content to show inside the input to the left */
-  inputPrefix?: React.ReactNode;
-
-  /** Content to show inside the input to the right */
-  inputSuffix?: React.ReactNode;
 
   /** Label of the input */
   label?: React.ReactNode;
@@ -101,15 +81,12 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef<
     id,
     label,
     name,
-    hasFeedbackIcon,
     onBlur,
     onChange,
     onClick,
     onFocus,
     placeholder,
     size,
-    inputPrefix,
-    inputSuffix,
     borderType,
     readOnly,
     required,
@@ -128,25 +105,10 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef<
         </Label>
       )}
       {description && <Description theme={theme}>{description}</Description>}
-      <AffixContainer>
-        {inputPrefix && (
-          <Prefix inputSize={size} theme={theme}>
-            {inputPrefix}
-          </Prefix>
-        )}
-        <Suffix
-          validationStatus={status}
-          theme={theme}
-          inputSuffix={inputSuffix}
-          size={size}
-          hasFeedbackIcon={hasFeedbackIcon}
-        />
-      </AffixContainer>
       <StyledInput
         label={null}
         disabled={disabled}
         defaultValue={defaultValue}
-        hasFeedbackIcon={hasFeedbackIcon}
         type={htmlType}
         as={htmlType === 'textarea' ? 'textarea' : undefined}
         id={id}
@@ -158,13 +120,11 @@ export const Input: React.FunctionComponent<InputProps> = React.forwardRef<
         placeholder={placeholder}
         borderType={borderType}
         inputSize={size}
-        inputSuffix={inputSuffix}
-        inputPrefix={inputPrefix}
         ref={ref}
         readOnly={readOnly}
         theme={theme}
         value={value}
-        validationStatus={status}
+        status={status}
       />
     </Container>
   );
@@ -178,8 +138,6 @@ Input.defaultProps = {
   disabled: false,
   defaultValue: undefined,
   htmlType: undefined,
-  hasFeedbackMessage: true,
-  hasFeedbackIcon: true,
   id: undefined,
   name: undefined,
   label: '',
