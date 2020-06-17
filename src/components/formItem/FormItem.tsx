@@ -20,7 +20,7 @@ export interface FormItemProps {
   status?: Status;
 
   /** Message to show when status is defined */
-  message?: string;
+  message?: React.ReactNode;
 
   /** if true, the status icon will be shown */
   hasIcon?: boolean;
@@ -63,6 +63,7 @@ const StatusMessage = styled(Typography.Description)`
 export const FormItem: React.FunctionComponent<FormItemProps> = ({
   children,
   className,
+  hasIcon,
   message,
   status,
 }) => {
@@ -78,7 +79,7 @@ export const FormItem: React.FunctionComponent<FormItemProps> = ({
         {children}
       </FormItemContext.Provider>
       <AnimatePresence>
-        {status && <FormItemIcon status={status} />}
+        {status && hasIcon && <FormItemIcon status={status} />}
       </AnimatePresence>
       <StatusContainer>
         <AnimatePresence>

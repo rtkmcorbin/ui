@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export interface FormItemContextProps {
-  message?: string;
+  message?: React.ReactNode;
   status?: 'error' | 'warning' | 'success' | 'loading';
 }
 
