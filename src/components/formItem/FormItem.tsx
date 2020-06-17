@@ -8,6 +8,8 @@ import { useTheme } from '../../hooks/useTheme';
 import { FormItemContext } from './FormItemContext';
 import { Typography } from '../typography/Typography';
 
+import { FormItemIcon } from './FormItemIcon';
+
 export type Status = 'error' | 'success' | 'warning' | 'loading';
 
 export interface FormItemProps {
@@ -19,9 +21,15 @@ export interface FormItemProps {
 
   /** Message to show when status is defined */
   message?: string;
+
+  /** if true, the status icon will be shown */
+  hasIcon?: boolean;
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+  position: relative;
+`;
+
 const StatusContainer = styled.div`
   height: 16px;
 `;
@@ -69,6 +77,9 @@ export const FormItem: React.FunctionComponent<FormItemProps> = ({
       >
         {children}
       </FormItemContext.Provider>
+      <AnimatePresence>
+        {status && <FormItemIcon status={status} />}
+      </AnimatePresence>
       <StatusContainer>
         <AnimatePresence>
           {message && status && (
@@ -89,6 +100,10 @@ export const FormItem: React.FunctionComponent<FormItemProps> = ({
       </StatusContainer>
     </Container>
   );
+};
+
+FormItem.defaultProps = {
+  hasIcon: true,
 };
 
 FormItem.displayName = 'FormItem';

@@ -103,7 +103,7 @@ export const StyledInput = styled.input<StyledInputProps>`
 
     box-sizing: border-box;
     
-    transition: all ${theme.animationTimeFast}s;
+    transition: border ${theme.animationTimeFast}s;
     
     ${inputSize === 'small' &&
       css`
