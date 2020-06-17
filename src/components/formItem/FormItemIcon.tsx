@@ -10,6 +10,10 @@ import TimesCircle from '../icons/TimesCircle';
 import ExclamationCircle from '../icons/ExclamationCircle';
 import CheckCircle from '../icons/CheckCircle';
 
+interface FormItemIconProps {
+  status: 'error' | 'warning' | 'loading' | 'success';
+}
+
 const IconContainer = styled(motion.span)`
   position: absolute;
   top: calc(50% - 16px);
@@ -18,7 +22,9 @@ const IconContainer = styled(motion.span)`
   align-items: center;
 `;
 
-export const FormItemIcon = ({ status }) => {
+export const FormItemIcon: React.FunctionComponent<FormItemIconProps> = ({
+  status,
+}) => {
   const theme = useTheme();
 
   const getIcon = React.useCallback(() => {
